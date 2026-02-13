@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
 
     // Setup, cycle, and teardown topology
     DataProductDeployment::setupTopology(inputs);
-    DataProductDeployment::startRateGroups(Fw::TimeInterval(1,0));  // Program loop cycling rate groups at 1Hz
+    DataProductDeployment::startRateGroups(Fw::TimeInterval(0,100000));  // Program loop cycling rate groups at 1Hz
     DataProductDeployment::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
