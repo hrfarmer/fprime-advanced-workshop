@@ -18,7 +18,7 @@ module DataProducts {
         sync input port run: Svc.Sched
         sync input port Bmp280DataIn: Bmp280.Bmp280DataOut
         
-        product container Bmp280DataContainer
+        product container Bmp280DataContainer id 0x01 default priority 10
 
         product get port Bmp280ProductGet
         product send port Bmp280ProductSend

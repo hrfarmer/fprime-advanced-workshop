@@ -14,6 +14,7 @@ namespace DataProducts {
 class BmpManager final : public BmpManagerComponentBase {
 
 public:
+    constexpr static const FwSizeType RECORD_COUNT = 100;  //!< Number of records of each type in the data product
   // ----------------------------------------------------------------------
   // Component construction and destruction
   // ----------------------------------------------------------------------
@@ -38,7 +39,12 @@ private:
   void run_handler(FwIndexType portNum, //!< The port number
                    U32 context          //!< The call order
                    ) override;
+  // Vars
+  FwSizeType m_count;
+  DpContainer m_container;
+  bool m_containerValid;
 };
+
 
 } // namespace DataProducts
 
