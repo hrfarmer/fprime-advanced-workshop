@@ -17,4 +17,17 @@ BmpManager ::BmpManager(const char *const compName)
 
 BmpManager ::~BmpManager() {}
 
+// ----------------------------------------------------------------------
+// Handler implementations for typed input ports
+// ----------------------------------------------------------------------
+
+void BmpManager ::Bmp280DataIn_handler(FwIndexType portNum,
+                                       const Bmp280::Bmp280Data &data) {
+  // TODO
+}
+
+void BmpManager ::run_handler(FwIndexType portNum, U32 context) {
+  // TODO
+}
+
 } // namespace DataProducts

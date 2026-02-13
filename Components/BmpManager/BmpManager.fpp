@@ -1,4 +1,11 @@
 module DataProducts {
+    struct BmpSample {
+        timestamp  : Fw.TimeValue
+        temperature : F32
+        altitude : F32
+        pressure : F32
+    }
+
     @ Component for F Prime FSW framework.
     passive component BmpManager {
 
@@ -6,20 +13,21 @@ module DataProducts {
         #### Uncomment the following examples to start customizing your component ####
         ##############################################################################
 
-        # @ Example async command
-        # async command COMMAND_NAME(param_name: U32)
+        product record Bmp280ProductRecord: BmpSample
 
-        # @ Example telemetry counter
-        # telemetry ExampleCounter: U64
+        sync input port run: Svc.Sched
+        sync input port Bmp280DataIn: Bmp280.Bmp280DataOut
+        
+        product container Bmp280DataContainer
 
-        # @ Example event
-        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
-
-        # @ Example port: receiving calls from the rate group
-        # sync input port run: Svc.Sched
-
-        # @ Example parameter
-        # param PARAMETER_NAME: U32
+        product get port Bmp280ProductGet
+        product send port Bmp280ProductSend
+        
+        @ Event 
+        event Bmp280ProducerMemoryFailure(allocationSize : FwSizeType) \
+            severity warning high id 0 \
+            format "Memory allocation of size {} for data product container failed" \
+            throttle 2
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
@@ -41,6 +49,7 @@ module DataProducts {
 
         @Port to set the value of a parameter
         param set port prmSetOut
+
 
     }
 }
